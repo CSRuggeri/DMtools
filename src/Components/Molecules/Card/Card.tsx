@@ -32,10 +32,10 @@ export const Card: React.FC = () => {
   const {loading, error, data } = useFetch(url);
  
   if (loading){
-    return(<Htag Hcontent={"Loading..."} Hindex={1} />)
+    return(<Htag Hcontent={"Loading..."} Hindex={1} classname='heading' />)
   } 
   if (error) {
-    return(<Htag Hcontent={error} Hindex={1} />)
+    return(<Htag Hcontent={error} Hindex={1} classname='heading'/>)
   }
 
   
@@ -47,10 +47,10 @@ export const Card: React.FC = () => {
         <div className={styles.card}key={index}>
 
            
-          <Htag Hcontent={spell.name} Hindex={2} />
+          <Htag Hcontent={spell.name} Hindex={2} classname='heading'/>
           <Ptag text={spell.desc.join()} classname={"description"} />
           <Ptag text={spell.higher_level.join()} classname={"description"} />
-          <Ptag text={spell.range} classname={"description"} />
+          <Htag Hcontent={spell.range} Hindex={1} classname='description'/>
           <Ptag text={spell.components.join()} classname={"description"} />
           <Ptag text={spell.material} classname={"description"} />
           <Ptag text={spell.ritual ? "ritual" : "no es ritual"} classname={"description"} />
