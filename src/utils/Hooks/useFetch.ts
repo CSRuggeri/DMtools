@@ -11,7 +11,7 @@ export const useFetch = (url: string): FetchResult => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<any[] | null>(null);
-
+ 
   const fetchData = async () => {
     try {
       const response = await axios.get(url);
@@ -19,7 +19,8 @@ export const useFetch = (url: string): FetchResult => {
   
       const mappedData = await Promise.all(
         results.map(async (item: any) => {
-          const mappedURL = await axios.get("https://www.dnd5eapi.co" + item.url);
+          // Use the relative URL provided in the API response
+          const mappedURL = await axios.get(`https://www.dnd5eapi.co${item.url}`);
           return mappedURL.data;
         })
       );
@@ -32,11 +33,11 @@ export const useFetch = (url: string): FetchResult => {
     }
   };
   
+  
   useEffect(() => {
     fetchData();
-  }, [url]); // useEffect will re-run only when `url` changes
-  // Empty dependency array to run effect only once
+  }, []); 
   
-console.log(data)
+console.log("data:",data, "error:",error, "loading:", loading)
   return { loading, error, data };
 };
