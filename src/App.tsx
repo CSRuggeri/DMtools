@@ -1,5 +1,5 @@
 
-import './App.css'
+// import './App.css'
 import ContentWrapper from './Components/View/ContentWrapper/ContentWrapper'
 
 
